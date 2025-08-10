@@ -1,0 +1,14 @@
+CREATE TABLE car (
+    id SERIAL PRIMARY KEY,
+    type VARCHAR(32) NOT NULL,
+    license_plate VARCHAR(32) UNIQUE NOT NULL
+);
+
+CREATE TABLE reservation (
+    id SERIAL PRIMARY KEY,
+    car_id INT NOT NULL,
+    "from" TIMESTAMP NOT NULL,
+    "to" TIMESTAMP NOT NULL,
+
+    CONSTRAINT fk_car FOREIGN KEY (car_id) REFERENCES car(id) ON DELETE CASCADE
+);
